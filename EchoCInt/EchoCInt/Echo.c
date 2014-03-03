@@ -30,7 +30,11 @@ int main(int argc, char **argv)
 		port = atoi(argv[2]);	//将字符串转换为整型数
 	}
 
-	WSAStartup(MAKEWORD(2, 2), &wsa_data);	/*初始化Winsocket资源,它必须是被应用程序调用的第一个Winsock函数,允许应用程序指定要使用的Winsock版本*/
+	if ( 0 != WSAStartup(MAKEWORD(2, 2), &wsa_data))
+	{
+		printf("[Echo Client] WSAStartup error : %d.\r\n", WSAGetLastError());
+	}
+	/*初始化Winsocket资源,它必须是被应用程序调用的第一个Winsock函数,允许应用程序指定要使用的Winsock版本*/
 	
 	send_len = strlen(test_data);
 
