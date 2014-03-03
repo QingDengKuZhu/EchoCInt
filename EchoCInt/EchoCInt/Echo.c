@@ -9,9 +9,9 @@
 
 int main(int argc, char **argv)
 {
-	WSADATA wsa_data;
+	WSADATA wsa_data = {0};
 	SOCKET echo_soc = 0;					/*socket句柄*/
-	struct sockaddr_in serv_addr;			/*服务器地址*/
+	struct sockaddr_in serv_addr = {0};			/*服务器地址*/
 	unsigned short port = ECHO_DEF_PORT;	/*端口号*/
 	int result = 0;						/*存储Winsock函数返回值*/
 	int send_len = 0;						/*字符串长度*/
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
 	if (result > 0)
 	{
-		recv_buf[result] = 0;
+		recv_buf[result] = '\0';
 		printf("[Echo Client] receives: \"%s\"\r\n", recv_buf);
 	}
 	else
